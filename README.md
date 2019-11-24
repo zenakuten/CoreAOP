@@ -65,7 +65,7 @@ using Microsoft.Extensions.DependencyInjection;
  services.AddAspects();
 ```
 
-<sup><sup>AddAspects() __must__ be called __after__ your services with aspect attributes have been added to the collection.</sup></sup>
+<sup>AddAspects() __must__ be called __after__ your services with aspect attributes have been added to the collection.</sup>
 
 ----
 
