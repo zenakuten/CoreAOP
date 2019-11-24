@@ -30,7 +30,7 @@ public abstract class AspectAttribute : Attribute, IAspect
 Examples
 
 ```csharp
-public abstract class LogAttribute : AttributeAttribute
+public abstract class LogAttribute : AspectAttribute
 {
     public override void OnEnter(MethodInfo mi) 
     { 
@@ -40,7 +40,7 @@ public abstract class LogAttribute : AttributeAttribute
 ```
 
 ```csharp
-public abstract class ProfileAttribute : AttributeAttribute
+public abstract class ProfileAttribute : AspectAttribute
 {
     private DateTime timestamp;
     public override void OnEnter(MethodInfo mi) 
@@ -65,7 +65,7 @@ using Microsoft.Extensions.DependencyInjection;
  services.AddAspects();
 ```
 
-AddAspects() __must__ be called __after__ your services with aspect attributes have been added to the collection.
+<sup><sup>AddAspects() __must__ be called __after__ your services with aspect attributes have been added to the collection.</sup></sup>
 
 ----
 
