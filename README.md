@@ -49,7 +49,7 @@ public abstract class ProfileAttribute : AspectAttribute
     }
     public override void OnExit(MethodInfo mi) 
     { 
-        Console.WriteLine($"Calling {mi.Name} took {DateTime.Now - _timestamp}");
+        Console.WriteLine($"Calling {mi.Name} took {DateTime.Now - timestamp}");
     }
 }
 ```
