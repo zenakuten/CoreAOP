@@ -4,6 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageProjectUrl>https://github.com/zenakuten/CoreAOP</PackageProjectUrl>
     <PackageLicenseFile>LICENSE.TXT</PackageLicenseFile>
+    <Description>Aspect oriented programming for .NET</Description>
+    <Version>1.0.1</Version>
+    <PackageTags>aspect decorator</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
