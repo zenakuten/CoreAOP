@@ -12,7 +12,7 @@
         {
         }
 
-        public virtual void OnEnter(MethodInfo mi)
+        public virtual void OnEnter(MethodInfo mi, object[] args)
         {
         }
 
@@ -20,7 +20,7 @@
         {
         }
 
-        public virtual void OnExit(MethodInfo mi)
+        public virtual void OnExit(MethodInfo mi, object[] args)
         {
         }
     }

@@ -18,13 +18,13 @@
         /// Called on method entry 
         /// </summary>
         /// <param name="mi">method being called</param>
-        void OnEnter(MethodInfo mi);
+        void OnEnter(MethodInfo mi, object[] args);
 
         /// <summary>
         /// Called on method exit 
         /// </summary>
         /// <param name="mi">method being called</param>
-        void OnExit(MethodInfo mi);
+        void OnExit(MethodInfo mi, object[] args);
 
         /// <summary>
         ///  Called on method exception 

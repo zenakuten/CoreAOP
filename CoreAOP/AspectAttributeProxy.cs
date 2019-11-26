@@ -76,7 +76,7 @@
             var aspects = _aspectCache[targetMethod];
             foreach (var aspect in aspects)
             {
-                aspect.OnEnter(targetMethod);
+                aspect.OnEnter(targetMethod, args);
             }
 
             try
@@ -95,7 +95,7 @@
 
             foreach (var aspect in aspects)
             {
-                aspect.OnExit(targetMethod);
+                aspect.OnExit(targetMethod, args);
             }
 
             return retval;

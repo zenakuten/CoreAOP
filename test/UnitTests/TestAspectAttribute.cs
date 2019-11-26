@@ -12,13 +12,13 @@
             handler.OnCreate(createdType);
         }
 
-        public override void OnEnter(MethodInfo mi)
+        public override void OnEnter(MethodInfo mi, object[] args)
         {
-            handler.OnEnter(mi);
+            handler.OnEnter(mi, args);
         }
-        public override void OnExit(MethodInfo mi)
+        public override void OnExit(MethodInfo mi, object[] args)
         {
-            handler.OnExit(mi);
+            handler.OnExit(mi, args);
         }
 
         public override void OnException(MethodInfo mi, Exception ex)

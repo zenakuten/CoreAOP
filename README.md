@@ -21,9 +21,9 @@ Attributes are defined by implementing a base class
 public abstract class AspectAttribute : Attribute, IAspect
 {
     public virtual void OnCreate(Type createdType) { }
-    public virtual void OnEnter(MethodInfo mi) { }
+    public virtual void OnEnter(MethodInfo mi, object[] args) { }
     public virtual void OnException(MethodInfo mi, Exception ex) { }
-    public virtual void OnExit(MethodInfo mi) { }
+    public virtual void OnExit(MethodInfo mi, object[] args) { }
 }
 ```
 
@@ -32,7 +32,7 @@ Examples
 ```csharp
 public class LogAttribute : AspectAttribute
 {
-    public override void OnEnter(MethodInfo mi) 
+    public override void OnEnter(MethodInfo mi, object[] args) 
     { 
         Console.WriteLine($"Calling {mi.Name}");
     }
@@ -43,11 +43,11 @@ public class LogAttribute : AspectAttribute
 public class ProfileAttribute : AspectAttribute
 {
     private DateTime timestamp;
-    public override void OnEnter(MethodInfo mi) 
+    public override void OnEnter(MethodInfo mi, object[] args) 
     { 
         timestamp = DateTime.Now;
     }
-    public override void OnExit(MethodInfo mi) 
+    public override void OnExit(MethodInfo mi, object[] args) 
     { 
         Console.WriteLine($"Calling {mi.Name} took {DateTime.Now - timestamp}");
     }
@@ -77,12 +77,12 @@ using Microsoft.Extensions.DependencyInjection;
 public class MyAspect : IAspect
 {
     public void OnCreate(Type createdType) { }
-    public void OnEnter(MethodInfo mi) 
+    public void OnEnter(MethodInfo mi, object[] args) 
     { 
         Console.WriteLine("MyAspect"); 
     }
     public void OnException(MethodInfo mi, Exception ex) { }
-    public void OnExit(MethodInfo mi) { }
+    public void OnExit(MethodInfo mi, object[] args) { }
 }
 ```
 ```csharp

@@ -11,15 +11,18 @@ namespace CoreAOP.UnitTests
         public MethodInfo MiEnter, MiExit, MiEx;
         public Exception Ex;
         public int CallCount = 0;
+        public object[] ArgsEnter;
+        public object[] ArgsExit;
 
         public void OnCreate(Type createdType)
         {
             CreatedType = createdType;
         }
 
-        public void OnEnter(MethodInfo mi)
+        public void OnEnter(MethodInfo mi, object[] args)
         {
             MiEnter = mi;
+            ArgsEnter = args;
             CallCount++;
         }
 
@@ -29,9 +32,10 @@ namespace CoreAOP.UnitTests
             Ex = ex;
         }
 
-        public void OnExit(MethodInfo mi)
+        public void OnExit(MethodInfo mi, object[] args)
         {
             MiExit = mi;
+            ArgsExit = args;
         }
     }
 

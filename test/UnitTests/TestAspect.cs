@@ -13,9 +13,9 @@ namespace CoreAOP.UnitTests
             handler.OnCreate(createdType);
         }
 
-        public void OnEnter(MethodInfo mi)
+        public void OnEnter(MethodInfo mi, object[] args)
         {
-            handler.OnEnter(mi);
+            handler.OnEnter(mi,args);
         }
 
         public void OnException(MethodInfo mi, Exception ex)
@@ -23,9 +23,9 @@ namespace CoreAOP.UnitTests
             handler.OnException(mi, ex);
         }
 
-        public void OnExit(MethodInfo mi)
+        public void OnExit(MethodInfo mi, object[] args)
         {
-            handler.OnExit(mi);
+            handler.OnExit(mi, args);
         }
     }
 }

@@ -19,7 +19,7 @@
         protected override object Invoke(MethodInfo targetMethod, object[] args)
         {
             object retval = null;
-            _aspect.OnEnter(targetMethod);
+            _aspect.OnEnter(targetMethod, args);
 
             try
             {
@@ -31,7 +31,7 @@
                 throw (ex.InnerException);
             }
 
-            _aspect.OnExit(targetMethod);
+            _aspect.OnExit(targetMethod, args);
             return retval;
         }
     }
