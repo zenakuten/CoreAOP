@@ -30,7 +30,7 @@ public abstract class AspectAttribute : Attribute, IAspect
 Examples
 
 ```csharp
-public abstract class LogAttribute : AspectAttribute
+public class LogAttribute : AspectAttribute
 {
     public override void OnEnter(MethodInfo mi) 
     { 
@@ -40,7 +40,7 @@ public abstract class LogAttribute : AspectAttribute
 ```
 
 ```csharp
-public abstract class ProfileAttribute : AspectAttribute
+public class ProfileAttribute : AspectAttribute
 {
     private DateTime timestamp;
     public override void OnEnter(MethodInfo mi) 
