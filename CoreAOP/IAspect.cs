@@ -24,7 +24,7 @@
         /// Called on method exit 
         /// </summary>
         /// <param name="mi">method being called</param>
-        void OnExit(MethodInfo mi, object[] args);
+        object OnExit(MethodInfo mi, object[] args, object retval);
 
         /// <summary>
         ///  Called on method exception 

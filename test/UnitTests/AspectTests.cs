@@ -1,12 +1,9 @@
-﻿
-namespace CoreAOP.UnitTests
+﻿namespace CoreAOP.UnitTests
 {
     using NUnit.Framework;
     using System;
-    using System.Collections.Generic;
-    using System.Reflection;
-    using System.Text;
     using Microsoft.Extensions.DependencyInjection;
+
     public class AspectTests 
     {
         [Test]

@@ -20,8 +20,9 @@
         {
         }
 
-        public virtual void OnExit(MethodInfo mi, object[] args)
+        public virtual object OnExit(MethodInfo mi, object[] args, object retval)
         {
+            return retval;
         }
     }
 }

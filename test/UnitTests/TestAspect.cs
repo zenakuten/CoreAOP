@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Text;
-
-namespace CoreAOP.UnitTests
+﻿namespace CoreAOP.UnitTests
 {
+    using System;
+    using System.Reflection;
+
     public class TestAspect : IAspect
     {
         public static IAspect handler = null;
@@ -23,9 +21,9 @@ namespace CoreAOP.UnitTests
             handler.OnException(mi, ex);
         }
 
-        public void OnExit(MethodInfo mi, object[] args)
+        public object OnExit(MethodInfo mi, object[] args, object retval)
         {
-            handler.OnExit(mi, args);
+            return handler.OnExit(mi, args, retval);
         }
     }
 }

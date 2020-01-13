@@ -1,10 +1,9 @@
-using NUnit.Framework;
-
 namespace CoreAOP.UnitTests
 {
     using System;
-    using System.Reflection;
+    using NUnit.Framework;
     using Microsoft.Extensions.DependencyInjection;
+
     public class AttributeTests 
     {
         [Test]

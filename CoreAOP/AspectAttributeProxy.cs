@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
+    using System.Threading.Tasks;
     using Microsoft.Extensions.DependencyInjection;
 
     /// <summary>
@@ -27,7 +28,7 @@
             foreach (var serviceInterface in service.GetType().GetInterfaces())
             {
                 var serviceAttributes = serviceInterface.GetCustomAttributes(typeof(IAspect), true);
-                serviceAttributes.ToList().ForEach(sa => typeAttributes.Add(sa as IAspect));
+                serviceAttributes.ToList().ForEach(sa => { if(!typeAttributes.Contains(sa as IAspect)) typeAttributes.Add(sa as IAspect);});
             }
 
             //cache all aspects for each method so we don't have look them up during invoke
@@ -52,10 +53,7 @@
             }
 
             //call OnCreate for this type 
-            foreach (var aspect in typeAttributes.Distinct())
-            {
-                aspect.OnCreate(services.GetServiceType(service.GetType()));
-            }
+            typeAttributes.ForEach(aspect => aspect.OnCreate(services.GetServiceType(service.GetType())));
 
             //create the proxy using dispatchproxy, assign service and cache to it
             T proxy = Create<T, AspectAttributeProxy<T>>();
@@ -73,11 +71,10 @@
         protected override object Invoke(MethodInfo targetMethod, object[] args)
         {
             object retval = null;
+
+            //get cached list of aspects on the type, call their enter methods
             var aspects = _aspectCache[targetMethod];
-            foreach (var aspect in aspects)
-            {
-                aspect.OnEnter(targetMethod, args);
-            }
+            aspects.ForEach(aspect => aspect.OnEnter(targetMethod, args));
 
             try
             {
@@ -85,18 +82,11 @@
             }
             catch (TargetInvocationException ex)
             {
-                foreach (var aspect in aspects)
-                {
-                    aspect.OnException(targetMethod, ex.InnerException);
-                }
-
+                aspects.ForEach(aspect => aspect.OnException(targetMethod, ex.InnerException));
                 throw (ex.InnerException);
             }
 
-            foreach (var aspect in aspects)
-            {
-                aspect.OnExit(targetMethod, args);
-            }
+            aspects.ForEach( aspect => retval = aspect.OnExit(targetMethod, args, retval));
 
             return retval;
         }

@@ -16,9 +16,9 @@
         {
             handler.OnEnter(mi, args);
         }
-        public override void OnExit(MethodInfo mi, object[] args)
+        public override object OnExit(MethodInfo mi, object[] args, object retval)
         {
-            handler.OnExit(mi, args);
+            return handler.OnExit(mi, args, retval);
         }
 
         public override void OnException(MethodInfo mi, Exception ex)

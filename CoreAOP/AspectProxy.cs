@@ -1,8 +1,8 @@
 ﻿namespace CoreAOP
 {
-    using System;
     using System.Reflection;
     using Microsoft.Extensions.DependencyInjection;
+
     public class AspectProxy<T> : DispatchProxy
     {
         private IAspect _aspect;
@@ -16,6 +16,7 @@
             (proxy as AspectProxy<T>)._aspect = aspect;
             return proxy;
         }
+
         protected override object Invoke(MethodInfo targetMethod, object[] args)
         {
             object retval = null;
@@ -31,7 +32,7 @@
                 throw (ex.InnerException);
             }
 
-            _aspect.OnExit(targetMethod, args);
+            retval = _aspect.OnExit(targetMethod, args, retval);
             return retval;
         }
     }

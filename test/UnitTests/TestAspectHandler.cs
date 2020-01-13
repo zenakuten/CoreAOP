@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CoreAOP.UnitTests
+﻿namespace CoreAOP.UnitTests
 {
+    using System;
     using System.Reflection;
+
     class TestAspectHandler : IAspect
     {
         public Type CreatedType;
@@ -13,6 +11,7 @@ namespace CoreAOP.UnitTests
         public int CallCount = 0;
         public object[] ArgsEnter;
         public object[] ArgsExit;
+        public object Retval;
 
         public void OnCreate(Type createdType)
         {
@@ -32,10 +31,12 @@ namespace CoreAOP.UnitTests
             Ex = ex;
         }
 
-        public void OnExit(MethodInfo mi, object[] args)
+        public object OnExit(MethodInfo mi, object[] args, object retval)
         {
             MiExit = mi;
             ArgsExit = args;
+            Retval = retval;
+            return retval;
         }
     }
 

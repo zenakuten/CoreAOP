@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CoreAOP.UnitTests
+﻿namespace CoreAOP.UnitTests
 {
+    using System;
+
     class TestService : ITestService
     {
         public bool TestMethod()
@@ -11,6 +9,7 @@ namespace CoreAOP.UnitTests
             return true;
         }
     }
+
     class TestServiceWithThrow : ITestService
     {
         public bool TestMethod()
