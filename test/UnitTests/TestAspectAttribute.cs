@@ -12,9 +12,9 @@
             handler.OnCreate(createdType);
         }
 
-        public override void OnEnter(MethodInfo mi, object[] args)
+        public override object[] OnEnter(MethodInfo mi, object[] args)
         {
-            handler.OnEnter(mi, args);
+            return handler.OnEnter(mi, args);
         }
         public override object OnExit(MethodInfo mi, object[] args, object retval)
         {

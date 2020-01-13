@@ -21,7 +21,7 @@ Attributes are defined by implementing a base class
 public abstract class AspectAttribute : Attribute, IAspect
 {
     public virtual void OnCreate(Type createdType) { }
-    public virtual void OnEnter(MethodInfo mi, object[] args) { }
+    public virtual object[] OnEnter(MethodInfo mi, object[] args) { }
     public virtual void OnException(MethodInfo mi, Exception ex) { }
     public virtual object OnExit(MethodInfo mi, object[] args, object retval) { }
 }
@@ -35,6 +35,7 @@ public class LogAttribute : AspectAttribute
     public override void OnEnter(MethodInfo mi, object[] args) 
     { 
         Console.WriteLine($"Calling {mi.Name}");
+		return args;
     }
 }
 ```
@@ -46,6 +47,7 @@ public class ProfileAttribute : AspectAttribute
     public override void OnEnter(MethodInfo mi, object[] args) 
     { 
         timestamp = DateTime.Now;
+		return args;
     }
     public override object OnExit(MethodInfo mi, object[] args, object retval) 
     { 
@@ -78,12 +80,16 @@ using Microsoft.Extensions.DependencyInjection;
 public class MyAspect : IAspect
 {
     public void OnCreate(Type createdType) { }
-    public void OnEnter(MethodInfo mi, object[] args) 
+    public object[] OnEnter(MethodInfo mi, object[] args) 
     { 
         Console.WriteLine("MyAspect"); 
+		return args;
     }
     public void OnException(MethodInfo mi, Exception ex) { }
-    public object OnExit(MethodInfo mi, object[] args, object retval) {  return retval; }
+    public object OnExit(MethodInfo mi, object[] args, object retval) 
+	{  
+		return retval; 
+	}
 }
 ```
 ```csharp

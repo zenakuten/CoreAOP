@@ -74,7 +74,7 @@
 
             //get cached list of aspects on the type, call their enter methods
             var aspects = _aspectCache[targetMethod];
-            aspects.ForEach(aspect => aspect.OnEnter(targetMethod, args));
+            aspects.ForEach(aspect => args = aspect.OnEnter(targetMethod, args));
 
             try
             {

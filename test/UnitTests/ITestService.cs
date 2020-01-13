@@ -4,6 +4,12 @@
     public interface ITestService 
     {
         [TestAspect]
-        bool TestMethod();
+        bool TestMethod(bool testParam);
+
+        [AlwaysFalseOnCall]
+        bool TestMethodAlwaysFalseOnCall(bool testParam);
+
+        [AlwaysFalseOnExit]
+        bool TestMethodAlwaysFalseOnExit(bool testParam);
     }
 }

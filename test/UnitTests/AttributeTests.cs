@@ -29,7 +29,7 @@ namespace CoreAOP.UnitTests
             services.AddAspects();
             var provider = services.BuildServiceProvider();
             var testService = provider.GetService<ITestService>();
-            var actual = testService.TestMethod();
+            var actual = testService.TestMethod(true);
             Assert.AreEqual(typeof(ITestService).GetMethod(nameof(testService.TestMethod)), handler.MiEnter);
             Assert.AreEqual(typeof(ITestService).GetMethod(nameof(testService.TestMethod)), handler.MiExit);
             Assert.AreEqual(true, actual);
@@ -50,7 +50,7 @@ namespace CoreAOP.UnitTests
             services.AddAspect<ITestService, TestAspect>();
             var provider = services.BuildServiceProvider();
             var testService = provider.GetService<ITestService>();
-            var actual = testService.TestMethod();
+            var actual = testService.TestMethod(true);
             Assert.AreEqual(typeof(ITestService).GetMethod(nameof(testService.TestMethod)), handler.MiEnter);
             Assert.AreEqual(typeof(ITestService).GetMethod(nameof(testService.TestMethod)), handler.MiExit);
             Assert.AreEqual(true, actual);
@@ -71,13 +71,37 @@ namespace CoreAOP.UnitTests
             var testService = provider.GetService<ITestService>();
             try
             {
-                testService.TestMethod();
+                testService.TestMethod(true);
             }
             catch
             {
             }
             Assert.AreEqual(typeof(ITestService).GetMethod(nameof(testService.TestMethod)), handler.MiEx);
             Assert.AreEqual(typeof(NotImplementedException), handler.Ex.GetType());
+        }
+
+        [Test]
+        public void TestMethodCallAlwaysFalseOnCall()
+        {
+            var services = new ServiceCollection();
+            services.AddTransient<ITestService, TestService>();
+            services.AddAspects();
+            var provider = services.BuildServiceProvider();
+            var testService = provider.GetService<ITestService>();
+            var actual = testService.TestMethodAlwaysFalseOnCall(true);
+            Assert.AreEqual(false, actual);
+        }
+
+        [Test]
+        public void TestMethodCallAlwaysFalseOnExit()
+        {
+            var services = new ServiceCollection();
+            services.AddTransient<ITestService, TestService>();
+            services.AddAspects();
+            var provider = services.BuildServiceProvider();
+            var testService = provider.GetService<ITestService>();
+            var actual = testService.TestMethodAlwaysFalseOnExit(true);
+            Assert.AreEqual(false, actual);
         }
     }
 }

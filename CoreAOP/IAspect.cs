@@ -18,12 +18,14 @@
         /// Called on method entry 
         /// </summary>
         /// <param name="mi">method being called</param>
-        void OnEnter(MethodInfo mi, object[] args);
+        /// <returns>by default, returns the passed in args</returns>
+        object[] OnEnter(MethodInfo mi, object[] args);
 
         /// <summary>
         /// Called on method exit 
         /// </summary>
         /// <param name="mi">method being called</param>
+        /// <returns>by default, returns the passed in retval</returns>
         object OnExit(MethodInfo mi, object[] args, object retval);
 
         /// <summary>

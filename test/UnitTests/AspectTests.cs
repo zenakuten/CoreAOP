@@ -42,7 +42,7 @@
             services.AddAspect<ITestService, TestAspect>();
             var provider = services.BuildServiceProvider();
             var testService = provider.GetService<ITestService>();
-            var actual = testService.TestMethod();
+            var actual = testService.TestMethod(true);
             Assert.AreEqual(typeof(ITestService).GetMethod(nameof(testService.TestMethod)), handler.MiEnter);
             Assert.AreEqual(typeof(ITestService).GetMethod(nameof(testService.TestMethod)), handler.MiExit);
             Assert.AreEqual(true, actual);
@@ -60,7 +60,7 @@
             var testService = provider.GetService<ITestService>();
             try
             {
-                testService.TestMethod();
+                testService.TestMethod(true);
             }
             catch
             {

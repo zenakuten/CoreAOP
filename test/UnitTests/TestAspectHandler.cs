@@ -18,11 +18,12 @@
             CreatedType = createdType;
         }
 
-        public void OnEnter(MethodInfo mi, object[] args)
+        public object[] OnEnter(MethodInfo mi, object[] args)
         {
             MiEnter = mi;
             ArgsEnter = args;
             CallCount++;
+            return args;
         }
 
         public void OnException(MethodInfo mi, Exception ex)

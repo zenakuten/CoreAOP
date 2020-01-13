@@ -20,7 +20,7 @@
         protected override object Invoke(MethodInfo targetMethod, object[] args)
         {
             object retval = null;
-            _aspect.OnEnter(targetMethod, args);
+            args = _aspect.OnEnter(targetMethod, args);
 
             try
             {

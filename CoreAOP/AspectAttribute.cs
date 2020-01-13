@@ -12,8 +12,9 @@
         {
         }
 
-        public virtual void OnEnter(MethodInfo mi, object[] args)
+        public virtual object[] OnEnter(MethodInfo mi, object[] args)
         {
+            return args;
         }
 
         public virtual void OnException(MethodInfo mi, Exception ex)

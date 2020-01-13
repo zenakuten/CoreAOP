@@ -11,9 +11,9 @@
             handler.OnCreate(createdType);
         }
 
-        public void OnEnter(MethodInfo mi, object[] args)
+        public object[] OnEnter(MethodInfo mi, object[] args)
         {
-            handler.OnEnter(mi,args);
+            return handler.OnEnter(mi,args);
         }
 
         public void OnException(MethodInfo mi, Exception ex)
