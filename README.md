@@ -23,7 +23,7 @@ public abstract class AspectAttribute : Attribute, IAspect
     public virtual void OnCreate(Type createdType) { }
     public virtual void OnEnter(MethodInfo mi, object[] args) { }
     public virtual void OnException(MethodInfo mi, Exception ex) { }
-    public virtual void OnExit(MethodInfo mi, object[] args) { }
+    public virtual object OnExit(MethodInfo mi, object[] args, object retval) { }
 }
 ```
 
@@ -47,9 +47,10 @@ public class ProfileAttribute : AspectAttribute
     { 
         timestamp = DateTime.Now;
     }
-    public override void OnExit(MethodInfo mi, object[] args) 
+    public override object OnExit(MethodInfo mi, object[] args, object retval) 
     { 
         Console.WriteLine($"Calling {mi.Name} took {DateTime.Now - timestamp}");
+		return retval;
     }
 }
 ```
@@ -82,7 +83,7 @@ public class MyAspect : IAspect
         Console.WriteLine("MyAspect"); 
     }
     public void OnException(MethodInfo mi, Exception ex) { }
-    public void OnExit(MethodInfo mi, object[] args) { }
+    public object OnExit(MethodInfo mi, object[] args, object retval) {  return retval; }
 }
 ```
 ```csharp
