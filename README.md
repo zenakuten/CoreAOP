@@ -35,7 +35,7 @@ public class LogAttribute : AspectAttribute
     public override void OnEnter(MethodInfo mi, object[] args) 
     { 
         Console.WriteLine($"Calling {mi.Name}");
-		return args;
+        return args;
     }
 }
 ```
@@ -47,12 +47,12 @@ public class ProfileAttribute : AspectAttribute
     public override void OnEnter(MethodInfo mi, object[] args) 
     { 
         timestamp = DateTime.Now;
-		return args;
+        return args;
     }
     public override object OnExit(MethodInfo mi, object[] args, object retval) 
     { 
         Console.WriteLine($"Calling {mi.Name} took {DateTime.Now - timestamp}");
-		return retval;
+        return retval;
     }
 }
 ```
@@ -83,12 +83,12 @@ public class MyAspect : IAspect
     public object[] OnEnter(MethodInfo mi, object[] args) 
     { 
         Console.WriteLine("MyAspect"); 
-		return args;
+        return args;
     }
     public void OnException(MethodInfo mi, Exception ex) { }
     public object OnExit(MethodInfo mi, object[] args, object retval) 
 	{  
-		return retval; 
+        return retval; 
 	}
 }
 ```
